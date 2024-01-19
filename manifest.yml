@@ -1,0 +1,7 @@
+---
+name: Meshroom
+category: Interactive Apps
+subcategory: Creative
+role: batch_connect
+description: |
+  This will launch Meshroom and run with EGL support. 

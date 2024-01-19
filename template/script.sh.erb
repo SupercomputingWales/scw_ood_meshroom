@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Change working directory to user's home directory
+cd "${HOME}"
+
+# Reset module environment (may require login shell for some HPC clusters)
+module purge && module restore
+
+# Load the module we require (could choose version)
+module load meshroom/2023.1.0
+
+# Ensure that the user's configured login shell is used
+export SHELL="$(getent passwd $USER | cut -d: -f7)"
+
+# Start up desktop
+# Launch Mate Window Manager and Panel
+marco --no-composite --no-force-fullscreen &
+# mate-panel blocks, but does not work reliably when launched in the same subshell as marco
+#mate-panel &
+
+mate-terminal --disable-factory -x vglrun -d egl Meshroom
+
+echo "Desktop ended..."
